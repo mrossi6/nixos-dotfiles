@@ -1,6 +1,13 @@
-{ config, pkgs, ...}: 
+{
+  config,
+  pkgs,
+  zen-browser,
+  ...
+}:
 
 {
+  imports = [ zen-browser.homeModules.default ];
+
   home.username = "mark";
   home.homeDirectory = "/home/mark";
   home.stateVersion = "25.11";
@@ -9,15 +16,24 @@
 
   programs.zed-editor = {
     enable = true;
-    extensions = [ "nix" "toml" "rust" ];
+    extensions = [
+      "nix"
+      "toml"
+      "rust"
+    ];
     userSettings = {
       theme = {
         mode = "system";
         dark = "One Dark";
         light = "One Light";
       };
-    vim_mode = true;
+      vim_mode = true;
     };
+  };
+
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
   };
 
   programs.zsh = {

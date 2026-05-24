@@ -8,23 +8,36 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-
-  outputs = { nixpkgs, home-manager, ...}: {
-    nixosConfigurations.twist = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.mark = import ./home.nix;
-            backupFileExtension = "backup";
-          };
-        }
-      ];
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
+
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      zen-browser,
+      ...
+    } @ inputs:
+    {
+      nixosConfigurations.twist = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mark = import ./home.nix;
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit zen-browser; };
+            };
+          }
+        ];
+      };
+    };
 }
