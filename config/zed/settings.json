@@ -1,0 +1,128 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "git_panel": {
+    "tree_view": false
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "ollama",
+      "model": "all-minilm:latest"
+    },
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "favorite_models": [],
+    "always_allow_tool_actions": true,
+    "model_parameters": []
+  },
+  "context_servers": {
+    "azure-context-server": {
+      "enabled": true,
+      "settings": {
+        "enable_production_credentials": false
+      }
+    }
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+    "mode": "subtle"
+  },
+  "calls": {
+    "mute_on_join": false,
+  },
+  "audio": {
+    "experimental.rodio_audio": true,
+  },
+  "relative_line_numbers": "enabled",
+  "buffer_font_family": "CommitMono",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
+  },
+  "vim_mode": true,
+  "ui_font_size": 18.0,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "Nord Light",
+    "dark": "Everforest Dark Hard (regular)",
+  },
+  "terminal": {
+    "copy_on_select": true,
+    "font_fallbacks": ["CommitMono Nerd Font"],
+    "dock": "bottom",
+    "default_height": 400,
+    "font_family": "CommitMono Nerd Font",
+    "font_size": 14,
+    "working_directory": "current_project_directory",
+    "shell": {
+      "program": "zsh"
+    },
+    "env": {
+      "EDITOR": "zed --wait"
+    }
+  },
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "tab_size": 2,
+  "soft_wrap": "bounded",
+  "preferred_line_length": 120,
+  "show_whitespaces": "selection",
+  "ensure_final_newline_on_save": true,
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "autosave": "off",
+  "scroll_beyond_last_line": "one_page",
+  "vertical_scroll_margin": 8,
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy"
+        }
+      }
+    }
+  },
+  "code_actions_on_format": {
+    "source.organizeImports": true
+  },
+  "show_edit_predictions": true,
+  "project_panel": {
+    "dock": "left",
+    "default_width": 300,
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 20
+  },
+  "outline_panel": {
+    "dock": "right",
+    "default_width": 300
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "languages": {
+    "Python": {
+      "language_servers": [
+        "ty",
+        "!basedpyright",
+        "..."
+      ]
+    }
+  }
+}
+}
