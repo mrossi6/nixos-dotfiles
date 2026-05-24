@@ -69,6 +69,9 @@
   waybar
   git
   zsh
+  ghostty
+  zed
+  starship
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
