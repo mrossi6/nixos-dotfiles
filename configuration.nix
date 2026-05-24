@@ -70,8 +70,11 @@
   git
   zsh
   ghostty
-  zed
   starship
+  hyprlauncher
+  zed-editor
+  tailscale
+  lazygit
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -85,7 +88,11 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  services.tailscale = {
+    enable = true;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
