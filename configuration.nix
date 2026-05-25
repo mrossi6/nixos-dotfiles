@@ -19,6 +19,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
+  hardware.graphics.enable = true;
+
   networking.hostName = "twist";
 
   # Configure network connections interactively with nmcli or nmtui.
@@ -29,12 +36,6 @@
   services.getty.autologinUser = "mark";
 
   programs.zsh.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -63,26 +64,39 @@
   };
 
   programs.firefox.enable = true;
+  programs.niri.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    bolt
+    blueman
+    vim
     wget
     kitty
-    hyprpaper
-    waybar
+    fuzzel
     git
     zsh
+    libadwaita
+    gtk4
     ghostty
     starship
-    hyprlauncher
+    quickshell
+
     zed-editor
     tailscale
     lazygit
 
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-gnome
+    gnome-keyring
+    nautilus
+
+    mesa
+
     nil
     nixd
+    lua-language-server
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -94,6 +108,9 @@
   # };
 
   # List services that you want to enable:
+
+  services.hardware.bolt.enable = true;
+  services.blueman.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

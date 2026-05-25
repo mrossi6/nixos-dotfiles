@@ -49,6 +49,6 @@
 # resize-overlay-duration = 4s 200ms
 
 font-family = "Commit Mono"
-font-size = 16
+font-size = 14
 theme = "Catppuccin Mocha"
 
