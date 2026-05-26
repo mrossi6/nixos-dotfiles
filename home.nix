@@ -1,7 +1,6 @@
 {
-  config,
   pkgs,
-  zen-browser,
+  inputs,
   ...
 }:
 
@@ -20,7 +19,10 @@ let
 
 in
 {
-  imports = [ zen-browser.homeModules.default ];
+  imports = [
+    inputs.zen-browser.homeModules.default
+    inputs.noctalia.homeModules.default
+  ];
 
   home.username = "mark";
   home.homeDirectory = "/home/mark";
@@ -30,6 +32,59 @@ in
   # };
   #
   programs.starship.enable = true;
+
+  programs.noctalia-shell = {
+    enable = true;
+    settings = {
+      bar = {
+        density = "compact";
+        position = "right";
+        showCapsule = false;
+        widgets = {
+          left = [
+            {
+              id = "ControlCenter";
+              useDistroLogo = true;
+            }
+            {
+              id = "Network";
+            }
+            {
+              id = "Bluetooth";
+            }
+          ];
+          center = [
+            {
+              hideUnoccupied = true;
+              id = "Workspace";
+            }
+          ];
+          right = [
+            {
+              alwaysShowPercentage = false;
+              id = "Battery";
+              warningThreshold = 30;
+            }
+            {
+              formatHorizontal = "HH:mm";
+              formatVertical = "HH mm";
+              id = "Clock";
+              useMonospacedFont = true;
+              usePrimaryColor = true;
+            }
+          ];
+        };
+      };
+      colorSchemes.predefinedSCheme = "Monochrome";
+      general = {
+        radiusRatio = 0.2;
+      };
+      location = {
+        monthBeforeDay = true;
+        name = "Richmond, Virginia";
+      };
+    };
+  };
 
   programs.zed-editor = {
     enable = true;
@@ -92,5 +147,11 @@ in
 
   gtk = {
     enable = true;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
   };
 }

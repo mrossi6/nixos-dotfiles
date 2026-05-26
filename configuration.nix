@@ -3,17 +3,18 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
 
 {
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -21,7 +22,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
   };
 
   hardware.graphics.enable = true;
@@ -111,6 +112,8 @@
 
   services.hardware.bolt.enable = true;
   services.blueman.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

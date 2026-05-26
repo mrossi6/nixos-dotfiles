@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,24 +21,22 @@
 
   outputs =
     {
+      self,
       nixpkgs,
-      home-manager,
-      zen-browser,
       ...
-    } @ inputs:
+    }@inputs:
     {
       nixosConfigurations.twist = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.mark = import ./home.nix;
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit zen-browser; };
+              extraSpecialArgs = { inherit inputs; };
             };
           }
         ];
