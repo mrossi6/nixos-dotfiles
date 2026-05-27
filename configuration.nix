@@ -82,6 +82,7 @@
     gtk4
     ghostty
     starship
+    tmux
     quickshell
 
     zed-editor

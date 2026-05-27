@@ -34,7 +34,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.mark = import ./home.nix;
+              users.mark = import ./home;
               backupFileExtension = "backup";
               extraSpecialArgs = { inherit inputs; };
             };

@@ -33,6 +33,8 @@ in
   #
   programs.starship.enable = true;
 
+  programs.neovim.enable = true;
+
   programs.noctalia-shell = {
     enable = true;
     settings = {
@@ -133,9 +135,11 @@ in
     '';
   };
 
-  home.file.".config/niri".source = ./config/niri;
-  home.file.".config/ghostty".source = ./config/ghostty;
-  home.file.".config/starship".source = ./config/starship;
+  home.file.".config/niri".source = ../config/niri;
+  home.file.".config/ghostty".source = ../config/ghostty;
+  home.file.".config/nvim".source = ../config/nvim;
+  home.file.".config/tmux".source = ../config/tmux;
+  home.file.".config/starship".source = ../config/starship;
 
   home.packages = with pkgs; [
     commit-mono
