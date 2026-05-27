@@ -85,6 +85,8 @@
     tmux
     quickshell
 
+    home-manager
+
     zed-editor
     tailscale
     lazygit
