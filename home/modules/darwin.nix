@@ -1,4 +1,6 @@
 { ... }:
 {
-  # Reserved for macOS-specific Home Manager configuration.
+  # Home Manager settings shared by Darwin hosts go here.
+  #
+
 }

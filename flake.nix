@@ -28,25 +28,12 @@
       ];
       forAllSystems = lib.genAttrs systems;
       mkPkgs = system: import nixpkgs { inherit system; };
-      homeModulesFor =
-        system:
-        [
-          ./home
-          ./home/modules/common.nix
-        ]
-        ++ lib.optionals (lib.hasSuffix "linux" system) [
-          inputs.zen-browser.homeModules.default
-          inputs.noctalia.homeModules.default
-          ./home/modules/linux.nix
-        ]
-        ++ lib.optionals (lib.hasSuffix "darwin" system) [
-          ./home/modules/darwin.nix
-        ];
       mkHome =
         {
           system,
           username,
           homeDirectory,
+          hostModule,
           extraModules ? [ ],
         }:
         home-manager.lib.homeManagerConfiguration {
@@ -54,7 +41,7 @@
           extraSpecialArgs = {
             inherit inputs username homeDirectory;
           };
-          modules = homeModulesFor system ++ extraModules;
+          modules = [ hostModule ] ++ extraModules;
         };
     in
     {
@@ -69,7 +56,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.mark = {
-                imports = homeModulesFor "x86_64-linux";
+                imports = [ ./home/hosts/twist.nix ];
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
@@ -87,11 +74,13 @@
           system = "x86_64-linux";
           username = "mark";
           homeDirectory = "/home/mark";
+          hostModule = ./home/hosts/twist.nix;
         };
         "markrossi@work-mac" = mkHome {
           system = "aarch64-darwin";
           username = "markrossi";
           homeDirectory = "/Users/markrossi";
+          hostModule = ./home/hosts/work-mac.nix;
         };
       };
 
