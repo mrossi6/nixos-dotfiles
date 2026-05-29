@@ -22,8 +22,8 @@
     userSettings = {
       theme = {
         mode = "dark";
-        dark = "Catppuccin Mocha - No Italics";
-        light = "Catppuccin Latte - No Italics";
+        dark = "Rosé Pine";
+        light = "Rosé Pine Dawn";
       };
       vim_mode = true;
       ui_font_size = 18;
