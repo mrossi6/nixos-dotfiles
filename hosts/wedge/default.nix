@@ -16,23 +16,43 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  nixpkgs.config.allowUnfree = true;
+
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  services.flatpak.enable = true;
 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings.General = {
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      Class = "0x000100";
+      FastConnectable = true;
+    };
   };
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
-  networking.hostName = "twist";
+  networking.hostName = "wedge";
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
+
+  # services.getty.autologinUser = "mark";
 
   programs.zsh.enable = true;
 
@@ -65,6 +85,22 @@
   programs.firefox.enable = true;
   programs.niri.enable = true;
 
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -93,6 +129,20 @@
     xdg-desktop-portal-gnome
     gnome-keyring
     nautilus
+
+    xwayland-satellite
+    steam
+    google-chrome
+    chromium
+
+    (wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        obs-vaapi
+      ];
+    })
 
     mesa
 
@@ -127,6 +177,13 @@
     "nix-command"
     "flakes"
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

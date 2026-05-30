@@ -73,19 +73,31 @@
         ];
       };
 
+      nixosConfigurations.wedge = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/wedge
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mark = {
+                imports = [ ./home/hosts/twist.nix ];
+              };
+              backupFileExtension = "backup";
+              extraSpecialArgs = {
+                inherit inputs;
+                username = "mark";
+                homeDirectory = "/home/mark";
+              };
+            };
+          }
+        ];
+      };
+
       homeConfigurations = {
-        "mark@twist" = mkHome {
-          system = "x86_64-linux";
-          username = "mark";
-          homeDirectory = "/home/mark";
-          hostModule = ./home/hosts/twist.nix;
-        };
-        "mark@ghost" = mkHome {
-          system = "x86_64-linux";
-          username = "mark";
-          homeDirectory = "/home/mark";
-          hostModule = ./home/hosts/ghost.nix;
-        };
         "markrossi@work-mac" = mkHome {
           system = "aarch64-darwin";
           username = "markrossi";

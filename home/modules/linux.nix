@@ -17,6 +17,11 @@ in
   programs.noctalia-shell = {
     enable = true;
     settings = {
+      appLauncher = {
+        position = "center";
+        overviewLayer = true;
+        viewMode = "grid";
+      };
       bar = {
         density = "compact";
         position = "right";
@@ -56,13 +61,30 @@ in
           ];
         };
       };
-      colorSchemes.predefinedSCheme = "Monochrome";
+      colorSchemes = {
+        useWallpaperColors = true;
+        predefinedScheme = "Noctalia (default)";
+        darkMode = true;
+        generationMethod = "fruit-salad";
+        syncGsettings = true;
+      };
       general = {
         radiusRatio = 0.2;
       };
       location = {
         monthBeforeDay = true;
         name = "Richmond, Virginia";
+      };
+      lockScreenBlur = 40;
+      wallpaper = {
+        enabled = true;
+        overviewEnabled = true;
+        directory = "/home/mark/walls";
+        viewMode = "single";
+        fillMode = "crop";
+        skipStartupTransition = true;
+        overviewBlur = 0.4;
+        overviewTint = 0.6;
       };
     };
   };

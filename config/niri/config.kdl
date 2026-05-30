@@ -78,9 +78,10 @@ layout {
 // Startup
 // =============================================================================
 spawn-at-startup "noctalia-shell"
+spawn-at-startup "xwayland-satellite"
 
 environment {
-    DISPLAY ":0"   // xwayland-satellite default
+    DISPLAY ":1"   // xwayland-satellite default
     QT_QPA_PLATFORM "wayland"
     MOZ_ENABLE_WAYLAND "1"
     NIXOS_OZONE_WL "1"
@@ -149,10 +150,10 @@ binds {
 
     // Terminal & launcher
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+B { spawn "firefox"; }
     Mod+E { spawn "nautilus"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-f" "-c" "0d0d1a"; }
+    Mod+Ctrl+Escape hotkey-overlay-title="Lock: Noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
 
     // Screenshots
     Print { screenshot; }
