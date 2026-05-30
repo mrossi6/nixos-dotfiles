@@ -53,7 +53,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./hosts/twist
           home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -79,6 +79,12 @@
           username = "mark";
           homeDirectory = "/home/mark";
           hostModule = ./home/hosts/twist.nix;
+        };
+        "mark@ghost" = mkHome {
+          system = "x86_64-linux";
+          username = "mark";
+          homeDirectory = "/home/mark";
+          hostModule = ./home/hosts/ghost.nix;
         };
         "markrossi@work-mac" = mkHome {
           system = "aarch64-darwin";
