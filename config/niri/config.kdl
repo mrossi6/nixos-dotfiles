@@ -42,9 +42,9 @@ output "eDP-1" {
 }
 
 output "DP-1" {
-    mode "2560x1440@59.951"
+    mode "3440x1440@99.982"
     position x=0 y=0
-    scale 1.25
+    scale 1.0
 }
 
 // =============================================================================
@@ -245,8 +245,8 @@ binds {
     Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
     // Column consume/expel
-    Mod+Comma  { consume-window-into-column; }
-    Mod+Period { expel-window-from-column; }
+    Mod+bracketLeft { consume-or-expel-window-left; }
+    Mod+bracketRight { consume-or-expel-window-right; }
 
     // Column width & height
     Mod+R { switch-preset-column-width; }
