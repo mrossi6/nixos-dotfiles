@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ../default.nix
@@ -6,6 +6,13 @@
     ../modules/darwin.nix
 
     inputs.paneru.homeModules.paneru
+  ];
+
+  home.packages = with pkgs; [
+    lazygit
+    home-manager
+    tmux
+    ripgrep
   ];
 
   programs.zsh = {
