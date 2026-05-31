@@ -65,13 +65,10 @@
       lockScreenBlur = 40;
       wallpaper = {
         enabled = true;
-        overviewEnabled = true;
         directory = "/home/mark/walls";
         viewMode = "single";
         fillMode = "crop";
         skipStartupTransition = true;
-        overviewBlur = 0.4;
-        overviewTint = 0.6;
       };
     };
   };
