@@ -60,7 +60,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.mark = {
-                imports = [ ./home/hosts/twist.nix ];
+                imports = [ ./home/users/mark.nix ];
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
@@ -84,7 +84,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.mark = {
-                imports = [ ./home/hosts/twist.nix ];
+                imports = [ ./home/users/mark.nix ];
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
