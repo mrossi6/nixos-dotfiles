@@ -6,12 +6,12 @@
 }:
 {
   imports = [
+    ../base.nix
     ./fonts.nix
     ./niri.nix
     ./noctalia.nix
   ];
   home = {
-    inherit username homeDirectory;
     stateVersion = "25.11";
   };
   home.pointerCursor = {

@@ -58,6 +58,15 @@
     shell = pkgs.zsh;
   };
 
+  users.users.sofia = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    packages = with pkgs; [
+      tree
+    ];
+    shell = pkgs.zsh;
+  };
+
   programs.firefox.enable = true;
   programs.niri.enable = true;
 
@@ -73,9 +82,11 @@
   services.displayManager = {
     sddm = {
       enable = true;
-      wayland.enable = false;
+      wayland.enable = true;
     };
   };
+
+  services.desktopManager.plasma6.enable = true;
 
   environment.systemPackages = with pkgs; [
     bolt

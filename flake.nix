@@ -85,12 +85,23 @@
               useUserPackages = true;
               users.mark = {
                 imports = [ ./home/users/mark.nix ];
+                home = {
+                  username = "mark";
+                  homeDirectory = "/home/mark";
+                  stateVersion = "25.11";
+                };
+              };
+              users.sofia = {
+                imports = [ ./home/users/sofia.nix ];
+                home = {
+                  username = "sofia";
+                  homeDirectory = "/home/sofia";
+                  stateVersion = "25.11";
+                };
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
-                username = "mark";
-                homeDirectory = "/home/mark";
               };
             };
           }
