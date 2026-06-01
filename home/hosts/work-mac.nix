@@ -1,8 +1,7 @@
 {
   inputs,
   pkgs,
-  username,
-  homeDirectory,
+  homeFlakeTarget,
   ...
 }:
 let
@@ -34,8 +33,10 @@ in
     ../programs/zed.nix
     inputs.paneru.homeModules.paneru
   ];
-  home.username = username;
-  home.homeDirectory = homeDirectory;
+
+  programs.zsh.shellAliases = {
+    hms = "home-manager switch --flake ~/nixos-dotfiles#${homeFlakeTarget}";
+  };
 
   home.packages = with pkgs; [
     lazygit
@@ -105,5 +106,4 @@ in
       };
     };
   };
-  home.stateVersion = "25.11";
 }

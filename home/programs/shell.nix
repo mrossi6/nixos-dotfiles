@@ -1,4 +1,8 @@
-{ ... }:
+{
+  lib,
+  nixosFlakeTarget ? null,
+  ...
+}:
 {
 
   programs.direnv.enable = true;
@@ -11,8 +15,8 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#twist";
+    shellAliases = lib.optionalAttrs (nixosFlakeTarget != null) {
+      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#${nixosFlakeTarget}";
     };
   };
 

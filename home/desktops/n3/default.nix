@@ -1,7 +1,5 @@
 {
   pkgs,
-  username,
-  homeDirectory,
   ...
 }:
 {
@@ -11,9 +9,6 @@
     ./niri.nix
     ./noctalia.nix
   ];
-  home = {
-    stateVersion = "25.11";
-  };
   home.pointerCursor = {
     name = "BreezeX-RosePine-Linux";
     package = pkgs.rose-pine-cursor;

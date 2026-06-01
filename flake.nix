@@ -33,20 +33,43 @@
       ];
       forAllSystems = lib.genAttrs systems;
       mkPkgs = system: import nixpkgs { inherit system; };
+      mkHmUser =
+        {
+          username,
+          stateVersion,
+          imports ? [ ],
+          homeDirectory ? "/home/${username}",
+        }:
+        {
+          inherit imports;
+          home = {
+            inherit username homeDirectory stateVersion;
+          };
+        };
       mkHome =
         {
           system,
           username,
           homeDirectory,
+          stateVersion,
           hostModule,
+          extraSpecialArgs ? { },
           extraModules ? [ ],
         }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = mkPkgs system;
           extraSpecialArgs = {
-            inherit inputs username homeDirectory;
-          };
-          modules = [ hostModule ] ++ extraModules;
+            inherit inputs;
+            nixosFlakeTarget = null;
+          } // extraSpecialArgs;
+          modules = [
+            hostModule
+            {
+              home = {
+                inherit username homeDirectory stateVersion;
+              };
+            }
+          ] ++ extraModules;
         };
     in
     {
@@ -60,14 +83,15 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.mark = {
+              users.mark = mkHmUser {
+                username = "mark";
+                stateVersion = "25.11";
                 imports = [ ./home/users/mark.nix ];
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
-                username = "mark";
-                homeDirectory = "/home/mark";
+                nixosFlakeTarget = "twist";
               };
             };
           }
@@ -84,24 +108,19 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.mark = {
+              users.mark = mkHmUser {
+                username = "mark";
+                stateVersion = "25.11";
                 imports = [ ./home/users/mark.nix ];
-                home = {
-                  username = "mark";
-                  homeDirectory = "/home/mark";
-                  stateVersion = "25.11";
-                };
               };
-              users.sofia = {
-                home = {
-                  username = "sofia";
-                  homeDirectory = "/home/sofia";
-                  stateVersion = "25.11";
-                };
+              users.sofia = mkHmUser {
+                username = "sofia";
+                stateVersion = "25.11";
               };
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
+                nixosFlakeTarget = "wedge";
               };
             };
           }
@@ -113,7 +132,11 @@
           system = "aarch64-darwin";
           username = "markrossi";
           homeDirectory = "/Users/markrossi";
+          stateVersion = "25.11";
           hostModule = ./home/hosts/work-mac.nix;
+          extraSpecialArgs = {
+            homeFlakeTarget = "markrossi@work-mac";
+          };
         };
       };
 
