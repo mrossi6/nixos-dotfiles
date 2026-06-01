@@ -1,5 +1,7 @@
 {
+  inputs,
   pkgs,
+  lib,
   ...
 }:
 
@@ -25,6 +27,30 @@
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "pixie";
+    package = lib.mkForce pkgs.kdePackages.sddm;
+    extraPackages = [
+      pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.qtdeclarative
+      pkgs.kdePackages.qt5compat
+    ];
+  };
+
+  environment.systemPackages = [
+    (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
+      primaryColor = "#B3C8FF"; # Hex color code
+      accentColor = "#3F5F91"; # Hex color code
+      autoColor = true; # true/false
+      backgroundColor = "#1A1C1E"; # Hex color code
+      textColor = "#E2E2E6"; # Hex color code
+      fontFamily = "JetBrains Mono"; # Font family name
+      fontSize = 13; # Font size in px
+    })
+  ];
 
   hardware.bluetooth = {
     settings.General = {
