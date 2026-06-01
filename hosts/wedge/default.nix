@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  lib,
   ...
 }:
 
@@ -13,44 +12,12 @@
     ./hardware-configuration.nix
   ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
-
-  nixpkgs.config.allowUnfree = true;
-
-  # Use the systemd-boot EFI boot loader.
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
     initrd.kernelModules = [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "pixie";
-    package = lib.mkForce pkgs.kdePackages.sddm;
-    extraPackages = [
-      pkgs.kdePackages.qtsvg
-      pkgs.kdePackages.qtdeclarative
-      pkgs.kdePackages.qt5compat
-    ];
-  };
-
-  environment.systemPackages = [
-    (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      primaryColor = "#B3C8FF"; # Hex color code
-      accentColor = "#3F5F91"; # Hex color code
-      autoColor = true; # true/false
-      backgroundColor = "#1A1C1E"; # Hex color code
-      textColor = "#E2E2E6"; # Hex color code
-      fontFamily = "JetBrains Mono"; # Font family name
-      fontSize = 13; # Font size in px
-    })
-  ];
 
   hardware.bluetooth = {
     settings.General = {
@@ -83,12 +50,6 @@
     shell = pkgs.zsh;
   };
 
-  programs.firefox.enable = true;
-  programs.niri.enable = true;
-
-  security.rtkit.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -97,5 +58,4 @@
   };
 
   system.stateVersion = "25.11";
-
 }

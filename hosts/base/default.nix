@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -21,6 +22,8 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+
+  security.rtkit.enable = true;
 
   time.timeZone = "America/New_York";
 
@@ -73,10 +76,24 @@
   programs.zsh.enable = true;
 
   services.blueman.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+  services.xserver.enable = true;
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "pixie";
+    package = lib.mkForce pkgs.kdePackages.sddm;
+    extraPackages = [
+      pkgs.kdePackages.qtsvg
+      pkgs.kdePackages.qtdeclarative
+      pkgs.kdePackages.qt5compat
+    ];
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
