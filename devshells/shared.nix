@@ -1,4 +1,8 @@
-{ lib, pkgs, system }:
+{
+  lib,
+  pkgs,
+  system,
+}:
 let
   basePackages = with pkgs; [
     fd
@@ -7,6 +11,7 @@ let
     jq
     ripgrep
     zsh
+    direnv
   ];
 in
 {

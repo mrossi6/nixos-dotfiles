@@ -1,19 +1,58 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  username,
+  homeDirectory,
+  ...
+}:
+let
+  zscaler-cert-raw = builtins.fetchurl {
+    url = "https://kmxprodzscalercerts.blob.core.windows.net/zscalercerts/zscaler_root_ca.crt";
+    sha256 = "0a7g3f8wg87gk6r98qwsa54s8vf16bgkyy4d4hzkccw3kl3wp734";
+  };
+
+  # Extract the PEM block from the openssl text dump
+  zscaler-pem = pkgs.runCommand "zscaler-root-ca.pem" { } ''
+    ${pkgs.gnused}/bin/sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' \
+      ${zscaler-cert-raw} > $out
+  '';
+
+  # Combined CA bundle: Mozilla CAs + Zscaler root
+  combined-ca-bundle = pkgs.runCommand "combined-ca-bundle.crt" { } ''
+    cat ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt > $out
+    echo "" >> $out
+    echo "# Zscaler Root CA" >> $out
+    cat ${zscaler-pem} >> $out
+  '';
+in
 {
   imports = [
-    ../default.nix
-    ../modules/common.nix
-    ../modules/darwin.nix
-
+    ../programs/ghostty.nix
+    ../programs/git.nix
+    ../programs/neovim.nix
+    ../programs/shell.nix
+    ../programs/zed.nix
     inputs.paneru.homeModules.paneru
   ];
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   home.packages = with pkgs; [
     lazygit
     home-manager
     tmux
     ripgrep
+    direnv
   ];
+
+  home.sessionVariables = {
+    NODE_EXTRA_CA_CERTS = zscaler-pem;
+    REQUESTS_CA_BUNDLE = combined-ca-bundle;
+    SSL_CERT_FILE = combined-ca-bundle;
+    CURL_CA_BUNDLE = combined-ca-bundle;
+    NIX_SSL_CERT_FILE = combined-ca-bundle;
+    GIT_SSL_CAINFO = combined-ca-bundle;
+  };
 
   programs.zsh = {
     enable = true;
@@ -29,7 +68,7 @@
   };
 
   services.paneru = {
-    enable = true;
+    enable = false;
     settings = {
       options = {
         focus_follows_mouse = false;
@@ -78,4 +117,5 @@
       };
     };
   };
+  home.stateVersion = "25.11";
 }

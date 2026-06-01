@@ -1,4 +1,8 @@
-{ lib, pkgs, system }:
+{
+  lib,
+  pkgs,
+  system,
+}:
 let
   shared = import ./shared.nix {
     inherit lib pkgs system;
