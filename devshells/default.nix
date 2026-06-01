@@ -13,7 +13,6 @@ let
 in
 rec {
   default = nix;
-
   go = import ./go.nix shellArgs;
   nix = import ./nix.nix shellArgs;
   node = import ./node.nix shellArgs;

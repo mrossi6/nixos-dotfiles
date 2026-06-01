@@ -93,7 +93,6 @@
                 };
               };
               users.sofia = {
-                imports = [ ./home/users/sofia.nix ];
                 home = {
                   username = "sofia";
                   homeDirectory = "/home/sofia";

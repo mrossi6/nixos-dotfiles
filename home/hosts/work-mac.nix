@@ -43,6 +43,7 @@ in
     tmux
     ripgrep
     direnv
+    pi-coding-agent
   ];
 
   home.sessionVariables = {
@@ -52,19 +53,6 @@ in
     CURL_CA_BUNDLE = combined-ca-bundle;
     NIX_SSL_CERT_FILE = combined-ca-bundle;
     GIT_SSL_CAINFO = combined-ca-bundle;
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    profileExtra = ''
-      eval "$(starship init zsh)"
-    '';
-    shellAliases = {
-      hms = "home-manager switch --flake '/Users/markrossi/repos/mirrors/nixos-dotfiles#markrossi@work-mac'";
-    };
   };
 
   services.paneru = {

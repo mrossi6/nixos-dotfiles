@@ -1,6 +1,9 @@
 { ... }:
 {
 
+  programs.direnv.enable = true;
+  programs.direnv.enableZshIntegration = true;
+
   programs.starship.enable = true;
 
   programs.zsh = {
@@ -8,9 +11,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    profileExtra = ''
-      eval "$(starship init zsh)"
-    '';
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#twist";
     };

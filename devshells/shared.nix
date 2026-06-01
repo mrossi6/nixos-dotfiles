@@ -36,7 +36,7 @@ in
             *i*)
               if [ -z "''${DIRENV_IN_ENVRC:-}" ] && [ -z "''${__NIXOS_DOTFILES_ZSH_ACTIVE:-}" ]; then
                 export __NIXOS_DOTFILES_ZSH_ACTIVE=1
-                exec ${pkgs.zsh}/bin/zsh
+
               fi
               ;;
           esac
