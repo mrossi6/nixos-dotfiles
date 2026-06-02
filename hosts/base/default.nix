@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -53,6 +54,16 @@
     xdg-desktop-portal-gnome
     gnome-keyring
     nautilus
+
+    (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
+      primaryColor = "#B3C8FF";
+      accentColor = "#3F5F91";
+      autoColor = true;
+      backgroundColor = "#1A1C1E";
+      textColor = "E2E2E6";
+      fontFamily = "Commit Mono";
+      fontSize = 13;
+    })
 
     xwayland-satellite
     steam
