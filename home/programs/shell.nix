@@ -16,6 +16,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = lib.optionalAttrs (nixosFlakeTarget != null) {
+      nd = "nix develop -c $SHELL";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#${nixosFlakeTarget}";
     };
   };
