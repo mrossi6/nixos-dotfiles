@@ -57,11 +57,11 @@ in
   };
 
   services.paneru = {
-    enable = false;
+    enable = true;
     settings = {
       options = {
         focus_follows_mouse = false;
-        mouse_follows_focus = true;
+        mouse_follows_focus = false;
         preset_column_widths = [
           0.25
           0.33
@@ -99,7 +99,7 @@ in
         window_fullwidth = "alt - f";
         window_manage = "alt - v";
 
-        window_stack = "alt - ]";
+        window_stack = "cmd + alt - ]";
         window_unstack = "alt + shift - ]";
 
         window_equalize = "alt + shift - e";
