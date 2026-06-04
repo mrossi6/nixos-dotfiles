@@ -35,7 +35,7 @@ in
   ];
 
   programs.zsh.shellAliases = {
-    hms = "home-manager switch --flake ~/nixos-dotfiles#${homeFlakeTarget}";
+    hms = ''home-manager switch --flake ~/repos/mirrors/nixos-dotfiles"#${homeFlakeTarget}"'';
   };
 
   home.packages = with pkgs; [
