@@ -40,6 +40,7 @@ in
 
   home.packages = with pkgs; [
     lazygit
+    nerd-fonts.commit-mono
     home-manager
     tmux
     ripgrep
