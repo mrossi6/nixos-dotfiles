@@ -26,10 +26,12 @@ let
 in
 {
   imports = [
+    ../programs/fzf.nix
     ../programs/ghostty.nix
     ../programs/git.nix
     ../programs/neovim.nix
     ../programs/shell.nix
+    ../programs/yazi.nix
     ../programs/zed.nix
     inputs.paneru.homeModules.paneru
   ];
@@ -38,7 +40,15 @@ in
     hms = ''home-manager switch --flake ~/repos/mirrors/nixos-dotfiles"#${homeFlakeTarget}"'';
   };
 
+  programs.zsh.oh-my-zsh.plugins = [
+    "azure"
+  ];
+
   home.packages = with pkgs; [
+    fd
+    azure-cli
+    gh
+    gh-dash
     lazygit
     nerd-fonts.commit-mono
     home-manager
@@ -46,6 +56,7 @@ in
     ripgrep
     direnv
     pi-coding-agent
+    zoxide
   ];
 
   home.sessionVariables = {

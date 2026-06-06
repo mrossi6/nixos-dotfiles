@@ -61,7 +61,8 @@
           extraSpecialArgs = {
             inherit inputs;
             nixosFlakeTarget = null;
-          } // extraSpecialArgs;
+          }
+          // extraSpecialArgs;
           modules = [
             hostModule
             {
@@ -69,7 +70,8 @@
                 inherit username homeDirectory stateVersion;
               };
             }
-          ] ++ extraModules;
+          ]
+          ++ extraModules;
         };
     in
     {

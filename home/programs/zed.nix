@@ -13,8 +13,8 @@
     userSettings = {
       theme = {
         mode = "dark";
-        dark = "Rosé Pine";
-        light = "Rosé Pine Dawn";
+        dark = "Tokyo Night";
+        light = "Tokyo Night Light";
       };
       vim_mode = true;
       ui_font_size = 18;

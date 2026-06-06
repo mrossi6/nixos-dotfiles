@@ -10,8 +10,23 @@
 
   programs.starship.enable = true;
 
+  programs.sesh.enable = true;
+  programs.fzf.tmux.enableShellIntegration = true;
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+      ];
+      theme = "robbyrussell";
+    };
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
