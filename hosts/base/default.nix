@@ -8,10 +8,32 @@
 {
   nixpkgs.hostPlatform = "x86_64-linux";
   nixpkgs.config.allowUnfree = true;
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
 
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
+  };
+
+  powerManagement.enable = true;
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "yes";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
+
+  systemd.services.bluetooth-resume = {
+    wantedBy = [ "suspend.target" ];
+    after = [ "suspend.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kmod}/bin/modprobe -r btusb";
+      ExecStartPost = [
+        "${pkgs.kmod}/bin/modprobe btusb"
+        "${pkgs.systemd}/bin/systemctl restart bluetooth"
+      ];
+    };
   };
 
   hardware.bluetooth = {
