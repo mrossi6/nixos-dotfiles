@@ -59,6 +59,8 @@
     btop
 
     vim
+    tree-sitter
+    fd
     wget
     kitty
     git
