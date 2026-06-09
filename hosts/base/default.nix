@@ -33,6 +33,9 @@
     blueman
     mesa
 
+    htop
+    btop
+
     vim
     wget
     kitty
