@@ -24,14 +24,14 @@
   };
 
   systemd.services.bluetooth-resume = {
-    wantedBy = [ "post-resume.target" ];
-    after = [ "post-resume.target" ];
+    wantedBy = [ "suspend.target" ];
+    after = [ "suspend.target" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.kmod}/bin/modprobe -r btusb";
       ExecStartPost = [
-        "${pkgs.kmod}/bin/modprobe -r btusb"
         "${pkgs.kmod}/bin/modprobe btusb"
+        "${pkgs.systemd}/bin/systemctl restart bluetooth"
       ];
     };
   };
