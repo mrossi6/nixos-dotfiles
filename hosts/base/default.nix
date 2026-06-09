@@ -38,6 +38,7 @@
     kitty
     git
     zsh
+    ripgrep
     libadwaita
     gtk4
     ghostty
@@ -67,6 +68,7 @@
 
     xwayland-satellite
     steam
+    discord
     google-chrome
     chromium
 

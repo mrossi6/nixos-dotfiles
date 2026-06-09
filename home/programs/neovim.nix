@@ -1,10 +1,36 @@
-{ ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
-  programs.neovim = {
+  imports = [
+    inputs.nvf.homeManagerModules.default
+  ];
+
+  programs.nvf = {
     enable = true;
-    withPython3 = false;
-    withRuby = false;
+
+    settings = {
+      vim.viAlias = true;
+      vim.vimAlias = true;
+      vim.lsp = {
+        enable = true;
+      };
+
+      vim.extraPlugins = {
+        aerial = {
+          package = pkgs.vimPlugins.aerial-nvim;
+          setup = "require('aerial').setup {}";
+        };
+
+        harpoon = {
+          package = pkgs.vimPlugins.harpoon;
+          setup = "require('harpoon').setup{}";
+          after = [ "aerial" ];
+        };
+      };
+    };
   };
-  home.file.".config/nvim".source = ../../config/nvim;
 }
