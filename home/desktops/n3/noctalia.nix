@@ -10,9 +10,26 @@
         viewMode = "grid";
       };
       bar = {
-        density = "compact";
+        barType = "floating";
+        density = "spacious";
         position = "right";
-        showCapsule = false;
+        showOutline = false;
+        showCapsule = true;
+        widgetSpacing = 6;
+        contentPadding = 2;
+        fontScale = 1.2;
+        backgroundOpacity = 0.2;
+        useSeparateOpacity = true;
+        marginVertical = 4;
+        marginHorizontal = 4;
+        frameThickness = 8;
+        frameRadius = 12;
+        outerCorners = true;
+        hideOnOverview = false;
+        displayMode = "non_exclusive";
+        autoHideDelay = 500;
+        autoShowDelay = true;
+        showOnWorkspaceSwitch = true;
         widgets = {
           left = [
             {
@@ -25,23 +42,41 @@
             {
               id = "Bluetooth";
             }
+            {
+              id = "Volume";
+            }
           ];
           center = [
             {
-              hideUnoccupied = true;
               id = "Workspace";
+              hideUnoccupied = true;
             }
           ];
           right = [
             {
-              alwaysShowPercentage = false;
+              id = "SystemMonitor";
+              compactMode = true;
+              showCpuTemp = true;
+              showCpuUsage = true;
+              showDiskAvailable = false;
+              showDiskUsage = false;
+              showGpuTemp = true;
+              showMemoryUsage = true;
+              showMemoryAsPercent = true;
+              showNetworkStats = false;
+              useMonospaceFont = true;
+              usePadding = false;
+
+            }
+            {
               id = "Battery";
+              alwaysShowPercentage = false;
               warningThreshold = 30;
             }
             {
+              id = "Clock";
               formatHorizontal = "HH:mm";
               formatVertical = "HH mm";
-              id = "Clock";
               useMonospacedFont = true;
               usePrimaryColor = true;
             }
@@ -69,6 +104,109 @@
         viewMode = "single";
         fillMode = "crop";
         skipStartupTransition = true;
+      };
+      sessionMenu = {
+        enableCountdown = true;
+        countdownDuration = 10000;
+        position = "center";
+        showHeader = true;
+        showKeybinds = true;
+        largeButtonsStyle = true;
+        largeButtonsLayout = "single-row";
+        powerOptions = [
+          {
+            action = "lock";
+            keybind = "1";
+          }
+          {
+            action = "suspend";
+            keybind = "2";
+          }
+          {
+            action = "reboot";
+            keybind = "3";
+          }
+          {
+            action = "logout";
+            keybind = "4";
+          }
+          {
+            action = "shutdown";
+            keybind = "5";
+          }
+          {
+            action = "rebootToUefi";
+            keybind = "6";
+          }
+          {
+            action = "userspaceReboot";
+          }
+        ];
+        colorSchemes = {
+          useWallpaperColors = false;
+          predefinedScheme = "Tokyo Night";
+          darkMode = true;
+          schedulingMode = "location";
+          manualSunrise = "06:30";
+          manualSunset = "18:30";
+          generationMethod = "fruit-salad";
+          syncGsettings = true;
+        };
+        templates = {
+          activeTemplates = [
+            {
+              id = "btop";
+              enabled = true;
+            }
+            {
+              id = "gtk";
+              enabled = true;
+            }
+            {
+              id = "yazi";
+              enabled = true;
+            }
+            {
+              id = "steam";
+              enabled = true;
+            }
+            {
+              id = "discord";
+              enabled = true;
+            }
+            {
+              id = "starship";
+              enabled = true;
+            }
+            {
+              id = "qt";
+              enabled = true;
+            }
+          ];
+          enableUserTheming = false;
+        };
+        nightLight = {
+          enabled = true;
+          autoSchedule = true;
+          nightTemp = 3500;
+          dayTemp = 5700;
+        };
+
+        idle = {
+          enabled = true;
+          screenOffTimeout = 300;
+          lockTimeout = 660;
+          suspendTimeout = 1800;
+          fadeDuration = 5;
+          screenOffCommand = "";
+          lockCommand = "";
+          suspendCommand = "";
+          resumeScreenOffCommand = "";
+          resumeLockCommand = "";
+          resumeSuspendCommand = "";
+          customCommands = "[]";
+        };
+
       };
     };
   };
