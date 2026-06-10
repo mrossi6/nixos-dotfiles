@@ -79,6 +79,11 @@
           setup = "require('aerial').setup {}";
         };
 
+        nvim-colorizer = {
+          package = pkgs.vimPlugins.nvim-colorizer-lua;
+          setup = "require('colorizer').setup {}";
+        };
+
         harpoon = {
           package = pkgs.vimPlugins.harpoon;
           setup = "require('harpoon').setup {}";
