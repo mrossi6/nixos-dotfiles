@@ -150,9 +150,9 @@ binds {
     // Terminal & launcher
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-    Mod+B { spawn "firefox"; }
+    Mod+B { spawn "zen-beta"; }
     Mod+E { spawn "nautilus"; }
-    Mod+Ctrl+Escape hotkey-overlay-title="Lock: Noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Mod+Ctrl+Q hotkey-overlay-title="Lock: Noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
 
     // Screenshots
     Print { screenshot; }
