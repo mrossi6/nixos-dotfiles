@@ -148,10 +148,18 @@
 
       devShells = forAllSystems (
         system:
-        import ./devshells {
+        import ./dev/shells {
           inherit lib system;
           pkgs = mkPkgs system;
         }
       );
+
+      templates = {
+        python = {
+          path = ./dev/templates/python;
+          description = "Basic Python project template";
+        };
+      };
     };
+
 }
