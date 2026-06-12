@@ -117,29 +117,36 @@
           {
             action = "lock";
             keybind = "1";
+            enabled = true;
           }
           {
             action = "suspend";
             keybind = "2";
+            enabled = true;
           }
           {
             action = "reboot";
             keybind = "3";
+            enabled = true;
           }
           {
             action = "logout";
             keybind = "4";
+            enabled = true;
           }
           {
             action = "shutdown";
             keybind = "5";
-          }
-          {
-            action = "rebootToUefi";
-            keybind = "6";
+            enabled = true;
           }
           {
             action = "userspaceReboot";
+            keybind = "6";
+            enabled = true;
+          }
+          {
+            action = "rebootToUefi";
+            enabled = true;
           }
         ];
         colorSchemes = {
