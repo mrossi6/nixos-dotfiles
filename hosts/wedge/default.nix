@@ -28,7 +28,6 @@
     package = pkgs.openrgb-with-all-plugins;
   };
 
-
   hardware.bluetooth = {
     settings.General = {
       Privacy = "device";
@@ -40,7 +39,13 @@
 
   hardware.graphics.enable32Bit = true;
 
-  networking.hostName = "wedge";
+  networking = {
+    hostName = "wedge";
+    interfaces.ens3 = {
+      wakeOnLan.enable = true;
+    };
+    firewall.allowedUDPPorts = [ 9 ];
+  };
 
   users.users.mark = {
     isNormalUser = true;
