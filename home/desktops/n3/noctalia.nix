@@ -10,8 +10,9 @@
         viewMode = "grid";
       };
       bar = {
-        barType = "floating";
         density = "spacious";
+        barType = "simple";
+        displayMode = "auto_hide";
         position = "right";
         showOutline = false;
         showCapsule = true;
@@ -26,7 +27,6 @@
         frameRadius = 12;
         outerCorners = true;
         hideOnOverview = false;
-        displayMode = "non_exclusive";
         autoHideDelay = 500;
         autoShowDelay = true;
         showOnWorkspaceSwitch = true;
