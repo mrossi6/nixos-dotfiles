@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   nixosFlakeTarget ? null,
   ...
 }:
@@ -9,6 +10,30 @@
   programs.direnv.enableZshIntegration = true;
 
   programs.starship.enable = true;
+
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    keyMode = "vi";
+    shortcut = "Space";
+    extraConfig = ''
+      set-option -g status-style "bg=#414868,fg=#a9b1d6"
+
+      bind-key -n C-h select-pane -L
+      bind-key -n C-j select-pane -D
+      bind-key -n C-k select-pane -U
+      bind-key -n C-l select-pane -R
+
+      bind-key | split-window -h -c "#{pane_current_path}"
+      bind-key - split-window -v -c "#{pane_current_path}"
+      unbind '"'
+      unbind %
+
+      # Vi-style selection and copy in copy mode
+      bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+      bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
+    '';
+  };
 
   programs.sesh.enable = true;
   programs.fzf.tmux.enableShellIntegration = true;
@@ -37,5 +62,5 @@
   };
 
   home.file.".config/starship".source = ../../config/starship;
-  home.file.".config/tmux".source = ../../config/tmux;
+  # home.file.".config/tmux".source = ../../config/tmux;
 }

@@ -34,7 +34,12 @@ in
     ../programs/yazi.nix
     ../programs/zed.nix
     inputs.paneru.homeModules.paneru
+    inputs.pi.homeModules.default
   ];
+
+  programs.pi.coding-agent = {
+    enable = true;
+  };
 
   programs.zsh.shellAliases = {
     hms = ''home-manager switch --flake ~/repos/mirrors/nixos-dotfiles"#${homeFlakeTarget}"'';
@@ -55,8 +60,12 @@ in
     tmux
     ripgrep
     direnv
-    pi-coding-agent
     zoxide
+    btop
+    
+    uv
+    nodejs
+    jdk
   ];
 
   home.sessionVariables = {
