@@ -50,13 +50,17 @@ in
   ];
 
   home.packages = with pkgs; [
+    home-manager
     fd
     azure-cli
     gh
     gh-dash
     lazygit
     nerd-fonts.commit-mono
-    home-manager
+    iosevka
+    # ioskeley-mono-normal-Term-NF
+    ioskeley-mono.normal-term-NF
+    departure-mono
     tmux
     ripgrep
     direnv
