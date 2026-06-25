@@ -46,6 +46,10 @@ output "DP-1" {
     position x=0 y=0
     scale 1.0
 }
+output "HDMI-A-1" {
+    mode "4096x2160"
+    variable-refresh-rate on-demand=true
+}
 
 // =============================================================================
 // Layout
