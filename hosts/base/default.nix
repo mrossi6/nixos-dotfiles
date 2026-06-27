@@ -93,6 +93,8 @@
       fontSize = 13;
     })
 
+    (inputs.trilium-notes.packages.${system}.desktop)
+
     xwayland-satellite
     steam
     discord
