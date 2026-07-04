@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 {
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
     settings = {
       appLauncher = {
