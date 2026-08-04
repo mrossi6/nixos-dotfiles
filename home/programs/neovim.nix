@@ -9,6 +9,10 @@
     inputs.nvf.homeManagerModules.default
   ];
 
+  home.packages = [
+    pkgs.tree-sitter
+  ];
+
   programs.nvf = {
     enable = true;
 
@@ -40,6 +44,7 @@
 
       vim.globals.mapleader = " ";
       vim.globals.maplocalleader = " ";
+
       vim.keymaps = [
         {
           key = "<leader>ff";
@@ -72,6 +77,13 @@
           action = "<cmd>NvimTreeToggle<CR>";
         }
       ];
+
+      vim.treesitter = {
+        enable = true;
+        grammars = [
+          pkgs.vimPlugins.nvim-treesitter-parsers.bicep
+        ];
+      };
 
       vim.extraPlugins = {
         aerial = {

@@ -6,6 +6,8 @@
 }:
 {
 
+  programs.bash.enable = true;
+
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
 
@@ -58,9 +60,24 @@
     shellAliases = lib.optionalAttrs (nixosFlakeTarget != null) {
       nd = "nix develop -c $SHELL";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#${nixosFlakeTarget}";
+    } //
+    {
+      try = "nix-shell -p ";
     };
   };
 
   home.file.".config/starship".source = ../../config/starship;
   # home.file.".config/tmux".source = ../../config/tmux;
+  #
+  #
+
+  home.sessionPath = [
+      "$HOME/.local/bin"
+      "/opt/homebrew/bin"
+      "$HOME/.nix-profile/bin"
+      "$HOME/.rd/bin"
+      "/run/current-system/sw/bin"
+      "/nix/var/nix/profiles/default/bin"
+      "$HOME/.config/emacs/bin"
+  ];
 }
