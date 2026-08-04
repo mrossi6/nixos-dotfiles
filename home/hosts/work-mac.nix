@@ -5,6 +5,11 @@
   ...
 }:
 let
+  # Cherry-picked from a pinned nixpkgs rev (see flake.nix) since our main
+  # nixpkgs is rolled back for darwin/ld64 stability; bump/revert the pin
+  # deliberately in flake.nix as needed.
+  pkgs-pinned = inputs.nixpkgs-pinned.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
   zscaler-cert-raw = builtins.fetchurl {
     url = "https://kmxprodzscalercerts.blob.core.windows.net/zscalercerts/zscaler_root_ca.crt";
     sha256 = "0a7g3f8wg87gk6r98qwsa54s8vf16bgkyy4d4hzkccw3kl3wp734";
@@ -52,12 +57,12 @@ in
   home.packages = with pkgs; [
     home-manager
     fd
-    azure-cli
+    yq
+    pkgs-pinned.azure-cli  # 2.84.0 via pinned nixpkgs-pinned; 2.87.0+ has a JsonCTemplatePolicy key-order regression
     gh
     gh-dash
     lazygit
     nerd-fonts.commit-mono
-    iosevka
     # ioskeley-mono-normal-Term-NF
     ioskeley-mono.normal-term-NF
     departure-mono
@@ -66,10 +71,11 @@ in
     direnv
     zoxide
     btop
-    
+
     uv
     nodejs
     jdk
+    emacs
   ];
 
   home.sessionVariables = {

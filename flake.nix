@@ -3,6 +3,12 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    # Cherry-pick specific package versions (e.g. azure-cli) without tracking
+    # bleeding-edge nixos-unstable for the whole system. Pin explicitly and
+    # bump/revert deliberately.
+    # Currently pinned for azure-cli 2.84.0 (2.87.0+ has a JsonCTemplatePolicy
+    # key-order regression).
+    nixpkgs-pinned.url = "github:NixOS/nixpkgs/59adee2382bad4c477d2e0c9580ad3eb41d51e4d";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -167,6 +173,10 @@
         python = {
           path = ./dev/templates/python;
           description = "Basic Python project template";
+        };
+        default = {
+          path = ./dev/templates;
+          description = "Slim project template";
         };
       };
     };
