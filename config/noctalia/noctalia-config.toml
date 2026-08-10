@@ -1,0 +1,349 @@
+lockScreenBlur = 40
+
+[accessibility]
+ui_scale = 1.2000000104308128
+
+[appLauncher]
+overviewLayer = true
+position = "center"
+viewMode = "grid"
+
+[bar]
+autoHideDelay = 500
+autoShowDelay = true
+backgroundOpacity = 0.20000000000000001
+barType = "simple"
+contentPadding = 2
+density = "spacious"
+displayMode = "auto_hide"
+fontScale = 1.2
+frameRadius = 12
+frameThickness = 8
+hideOnOverview = false
+marginHorizontal = 4
+marginVertical = 4
+order = [ "widgets", "bar" ]
+outerCorners = true
+position = "right"
+showCapsule = true
+showOnWorkspaceSwitch = true
+showOutline = false
+useSeparateOpacity = true
+widgetSpacing = 6
+
+    [bar.bar]
+    capsule_radius = 4
+    capsule_thickness = 0.46999999321997166
+    center = [ "clock", "control-center" ]
+    color = "on_surface"
+    enabled = true
+    end = [ "brightness", "volume", "bluetooth", "notifications", "clipboard", "bluetooth", "battery", "session" ]
+    font_family = "CommitMono"
+    font_weight = 700
+    margin_edge = 1
+    margin_ends = 0
+    padding = 20
+    radius_bottom_left = 0
+    radius_bottom_right = 0
+    radius_top_left = 0
+    radius_top_right = 0
+    reserve_space = false
+    scale = 1.2500000111758709
+    smart_auto_hide = true
+    thickness = 40
+    widget_spacing = 20
+
+    [bar.widgets]
+    enabled = false
+    scale = 1.7000000178813934
+    thickness = 30
+
+        [[bar.widgets.center]]
+        hideUnoccupied = true
+        id = "Workspace"
+
+        [[bar.widgets.left]]
+        id = "ControlCenter"
+        useDistroLogo = true
+
+        [[bar.widgets.left]]
+        id = "Network"
+
+        [[bar.widgets.left]]
+        id = "Bluetooth"
+
+        [[bar.widgets.left]]
+        id = "Volume"
+
+        [[bar.widgets.right]]
+        compactMode = true
+        id = "SystemMonitor"
+        showCpuTemp = true
+        showCpuUsage = true
+        showDiskAvailable = false
+        showDiskUsage = false
+        showGpuTemp = true
+        showMemoryAsPercent = true
+        showMemoryUsage = true
+        showNetworkStats = false
+        useMonospaceFont = true
+        usePadding = false
+
+        [[bar.widgets.right]]
+        alwaysShowPercentage = false
+        id = "Battery"
+        warningThreshold = 30
+
+        [[bar.widgets.right]]
+        formatHorizontal = "HH:mm"
+        formatVertical = "HH mm"
+        id = "Clock"
+        useMonospacedFont = true
+        usePrimaryColor = true
+
+[calendar]
+enabled = true
+
+    [calendar.account.personal_google]
+    name = "Google"
+    type = "google"
+
+    [calendar.account.personal_icloud]
+    name = "iCloud"
+    provider = "icloud"
+    type = "caldav"
+    username = "mark.a.rossi@pm.me"
+
+[colorSchemes]
+darkMode = true
+generationMethod = "fruit-salad"
+predefinedScheme = "Noctalia (default)"
+syncGsettings = true
+useWallpaperColors = true
+
+[control_center]
+sidebar = "full"
+sidebar_section = "full"
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+    [[control_center.shortcuts]]
+    type = "weather"
+
+[dock]
+enabled = true
+launcher_icon = "rocket"
+launcher_position = "start"
+pinned = [ "zen-beta", "com.mitchellh.ghostty", "dev.noctalia.Noctalia", "emacs" ]
+reserve_space = false
+show_dots = true
+show_instance_count = false
+smart_auto_hide = true
+
+[general]
+radiusRatio = 0.20000000000000001
+
+[location]
+auto_locate = true
+monthBeforeDay = true
+name = "Richmond, Virginia"
+
+[lockscreen]
+blurred_desktop = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1720.0
+    cy = 1321.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 961.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+
+[sessionMenu]
+countdownDuration = 10000
+enableCountdown = true
+largeButtonsLayout = "single-row"
+largeButtonsStyle = true
+position = "center"
+showHeader = true
+showKeybinds = true
+
+    [sessionMenu.colorSchemes]
+    darkMode = true
+    generationMethod = "fruit-salad"
+    manualSunrise = "06:30"
+    manualSunset = "18:30"
+    predefinedScheme = "Tokyo Night"
+    schedulingMode = "location"
+    syncGsettings = true
+    useWallpaperColors = false
+
+    [sessionMenu.idle]
+    customCommands = "[]"
+    enabled = true
+    fadeDuration = 5
+    lockCommand = ""
+    lockTimeout = 660
+    resumeLockCommand = ""
+    resumeScreenOffCommand = ""
+    resumeSuspendCommand = ""
+    screenOffCommand = ""
+    screenOffTimeout = 300
+    suspendCommand = ""
+    suspendTimeout = 1800
+
+    [sessionMenu.nightLight]
+    autoSchedule = true
+    dayTemp = 5700
+    enabled = true
+    nightTemp = 3500
+
+    [sessionMenu.templates]
+    enableUserTheming = false
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "btop"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "gtk"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "yazi"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "steam"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "discord"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "starship"
+
+        [[sessionMenu.templates.activeTemplates]]
+        enabled = true
+        id = "qt"
+
+    [[sessionMenu.powerOptions]]
+    action = "lock"
+    enabled = true
+    keybind = "1"
+
+    [[sessionMenu.powerOptions]]
+    action = "suspend"
+    enabled = true
+    keybind = "2"
+
+    [[sessionMenu.powerOptions]]
+    action = "reboot"
+    enabled = true
+    keybind = "3"
+
+    [[sessionMenu.powerOptions]]
+    action = "logout"
+    enabled = true
+    keybind = "4"
+
+    [[sessionMenu.powerOptions]]
+    action = "shutdown"
+    enabled = true
+    keybind = "5"
+
+    [[sessionMenu.powerOptions]]
+    action = "userspaceReboot"
+    enabled = true
+    keybind = "6"
+
+    [[sessionMenu.powerOptions]]
+    action = "rebootToUefi"
+    enabled = true
+
+[shell]
+corner_radius_scale = 1.2500000186264515
+lang = "en"
+
+    [shell.panel]
+    open_near_click_control_center = true
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Tokyo Night Moon"
+source = "community"
+wallpaper_scheme = "m3-content"
+
+[wallpaper]
+directory = "/home/mark/walls"
+enabled = true
+fillMode = "crop"
+skipStartupTransition = true
+viewMode = "single"
+
+    [wallpaper.default]
+    path = "/home/mark/walls/krishna4a6av-walls/Rosepine/blackhole.jpg"
+
+    [wallpaper.last]
+    path = "/home/mark/walls/krishna4a6av-walls/Rosepine/blackhole.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/mark/walls/krishna4a6av-walls/Rosepine/blackhole.jpg"
+
+[weather]
+unit = "imperial"
+
+[widget.network]
+show_vpn_label = true
