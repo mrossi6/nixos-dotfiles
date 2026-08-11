@@ -13,6 +13,7 @@ let
     zsh
     direnv
     nerd-fonts.commit-mono
+    tmux
   ];
 in
 {
