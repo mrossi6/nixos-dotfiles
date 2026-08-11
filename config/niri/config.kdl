@@ -130,8 +130,13 @@ animations {
 // =============================================================================
 window-rule {
     // Firefox PiP
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen-beta"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+window-rule {
+  match app-id=r#"zen-beta"# title="^Bitwarden$"
+  open-floating true
 }
 
 window-rule {
