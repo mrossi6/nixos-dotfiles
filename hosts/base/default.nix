@@ -93,8 +93,6 @@
       fontSize = 13;
     })
 
-    (inputs.trilium-notes.packages.${system}.desktop)
-
     xwayland-satellite
     steam
     discord
@@ -118,7 +116,7 @@
   programs.zsh.enable = true;
 
   services.blueman.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
   services.power-profiles-daemon.enable = true;
