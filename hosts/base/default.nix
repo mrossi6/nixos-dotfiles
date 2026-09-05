@@ -44,19 +44,32 @@
   hardware.graphics.enable = true;
 
   # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false;
+  };
 
   security.rtkit.enable = true;
 
   time.timeZone = "America/New_York";
 
+  imports = [
+    inputs.hermes-agent.nixosModules.default
+  ];
+
   environment.systemPackages = with pkgs; [
+    alsa-utils
+    nqptp
+    shairport-sync-airplay2
+
     bolt
     blueman
     mesa
+    ddcutil
 
     htop
     btop
+    fastfetch
 
     vim
     tree-sitter
@@ -112,9 +125,11 @@
   ];
 
   programs.firefox.enable = true;
+  programs.geary.enable = true;
   programs.niri.enable = true;
   programs.zsh.enable = true;
 
+  services.avahi.enable = true;
   services.blueman.enable = true;
   # services.desktopManager.plasma6.enable = true;
   services.flatpak.enable = true;
