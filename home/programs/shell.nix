@@ -59,7 +59,8 @@
     syntaxHighlighting.enable = true;
     shellAliases = lib.optionalAttrs (nixosFlakeTarget != null) {
       nd = "nix develop -c $SHELL";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#${nixosFlakeTarget}";
+      sudo = "/run/wrappers/bin/sudo";
+      nrs = "/run/wrappers/bin/sudo nixos-rebuild switch --flake ~/nixos-dotfiles#${nixosFlakeTarget}";
     } //
     {
       try = "nix-shell -p ";
