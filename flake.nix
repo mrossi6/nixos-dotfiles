@@ -9,6 +9,10 @@
     # Currently pinned for azure-cli 2.84.0 (2.87.0+ has a JsonCTemplatePolicy
     # key-order regression).
     nixpkgs-pinned.url = "github:NixOS/nixpkgs/59adee2382bad4c477d2e0c9580ad3eb41d51e4d";
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
