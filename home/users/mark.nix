@@ -2,9 +2,7 @@
 {
   imports = [
     ../desktops/n3
-    ../programs/discord.nix
     ../programs/emacs.nix
-    ../programs/ghostty.nix
     ../programs/git.nix
     ../programs/neovim.nix
     ../programs/shell.nix
@@ -14,4 +12,8 @@
     inputs.zen-browser.homeModules.default
     inputs.noctalia.homeModules.default
   ];
+
+  home.file.".config/ghostty".source = ../../config/ghostty;
+  programs.discord.enable = true;
+  programs.foliate.enable = true;
 }
