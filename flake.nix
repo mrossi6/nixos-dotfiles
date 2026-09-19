@@ -170,6 +170,10 @@
       );
 
       templates = {
+        node = {
+          path = ./dev/templates/node;
+          description = "Basic Node.js project template with pnpm";
+        };
         python = {
           path = ./dev/templates/python;
           description = "Basic Python project template";
