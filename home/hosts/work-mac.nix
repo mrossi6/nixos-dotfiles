@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   homeFlakeTarget,
@@ -28,11 +29,13 @@ let
     echo "# Zscaler Root CA" >> $out
     cat ${zscaler-pem} >> $out
   '';
+
+  combined-ca-bundle-path = "${config.home.homeDirectory}/.config/ssl/combined-ca-bundle.crt";
 in
 {
   imports = [
+    ../programs/emacs.nix
     ../programs/fzf.nix
-    ../programs/ghostty.nix
     ../programs/git.nix
     ../programs/neovim.nix
     ../programs/shell.nix
@@ -75,16 +78,20 @@ in
     uv
     nodejs
     jdk
-    emacs
   ];
+
+  home.file.".config/ghostty".source = ../../config/ghostty;
+  home.file.".config/ssl/combined-ca-bundle.crt".source = combined-ca-bundle;
 
   home.sessionVariables = {
     NODE_EXTRA_CA_CERTS = zscaler-pem;
-    REQUESTS_CA_BUNDLE = combined-ca-bundle;
-    SSL_CERT_FILE = combined-ca-bundle;
-    CURL_CA_BUNDLE = combined-ca-bundle;
-    NIX_SSL_CERT_FILE = combined-ca-bundle;
-    GIT_SSL_CAINFO = combined-ca-bundle;
+    REQUESTS_CA_BUNDLE = combined-ca-bundle-path;
+    SSL_CERT_FILE = combined-ca-bundle-path;
+    CURL_CA_BUNDLE = combined-ca-bundle-path;
+    NIX_SSL_CERT_FILE = combined-ca-bundle-path;
+    GIT_SSL_CAINFO = combined-ca-bundle-path;
+    BUN_CONFIG_EXTRA_CA_CERTS = zscaler-pem;
+    CARGO_HTTP_CAINFO = combined-ca-bundle-path;
   };
 
   services.paneru = {
