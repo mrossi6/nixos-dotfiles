@@ -96,6 +96,10 @@
     gnome-keyring
     nautilus
 
+    gnupg
+    pinentry-curses
+    libsecret
+
     (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
       primaryColor = "#B3C8FF";
       accentColor = "#3F5F91";
@@ -124,6 +128,11 @@
     tailscale
   ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
+    enableSSHSupport = true;
+  };
   programs.firefox.enable = true;
   programs.geary.enable = true;
   programs.niri.enable = true;
@@ -134,6 +143,7 @@
   # services.desktopManager.plasma6.enable = true;
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
+  services.pcscd.enable = true;
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
   services.xserver.enable = true;
