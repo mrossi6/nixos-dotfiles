@@ -86,21 +86,11 @@
       };
 
       vim.extraPlugins = {
-        # aerial = {
-        #   package = pkgs.vimPlugins.aerial-nvim;
-        #   setup = "require('aerial').setup {}";
-        # };
 
         nvim-colorizer = {
           package = pkgs.vimPlugins.nvim-colorizer-lua;
           setup = "require('colorizer').setup {}";
         };
-
-        # harpoon = {
-        #   package = pkgs.vimPlugins.harpoon;
-        #   setup = "require('harpoon').setup {}";
-        #   after = [ "aerial" ];
-        # };
 
         lualine-nvim = {
           package = pkgs.vimPlugins.lualine-nvim;
@@ -147,6 +137,10 @@
               ensure_installed = { 'lua', 'python', 'javascript', 'typescript', 'html', 'css', 'bash', 'kdl' }
             }
           '';
+        };
+
+        plenary-nvim = {
+          package = pkgs.vimPlugins.plenary-nvim;
         };
 
       };
