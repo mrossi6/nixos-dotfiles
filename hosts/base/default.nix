@@ -53,10 +53,6 @@
 
   time.timeZone = "America/New_York";
 
-  imports = [
-    inputs.hermes-agent.nixosModules.default
-  ];
-
   environment.systemPackages = with pkgs; [
     alsa-utils
     nqptp
