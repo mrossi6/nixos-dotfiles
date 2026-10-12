@@ -180,7 +180,7 @@
           description = "Basic Go project template";
         };
         default = {
-          path = ./dev/templates;
+          path = ./dev/templates/default;
           description = "Slim project template";
         };
       };
