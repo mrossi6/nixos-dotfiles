@@ -58,6 +58,8 @@
     nqptp
     shairport-sync-airplay2
 
+    gnupg
+
     bolt
     blueman
     mesa
