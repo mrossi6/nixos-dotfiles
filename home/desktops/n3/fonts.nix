@@ -8,6 +8,7 @@
     nerd-fonts.symbols-only
     commit-mono
     work-sans
+    ioskeley-mono.term-nf
     symbola
   ];
 }
