@@ -39,7 +39,6 @@
     '';
   };
 
-  programs.sesh.enable = true;
   programs.fzf.tmux.enableShellIntegration = true;
 
   programs.zoxide = {
