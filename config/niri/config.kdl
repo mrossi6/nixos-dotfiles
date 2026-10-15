@@ -135,7 +135,7 @@ window-rule {
 }
 
 window-rule {
-  match app-id=r#"zen-beta"# title="^Bitwarden$"
+  match title=r"^Extension$"
   open-floating true
 }
 
