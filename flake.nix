@@ -148,6 +148,29 @@
         ];
       };
 
+      nixosConfigurations.ghost = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/ghost
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mark = mkHmUser {
+                username = "mark";
+                stateVersion = "26.05";
+                imports = [ ./home/users/mark.nix ];
+              };
+              backupFileExtension = "backup";
+              extraSpecialArgs = {
+                inherit inputs;
+                nixosFlakeTarget = "ghost";
+              };
+            };
+          }
+        ];
+      };
+
       homeConfigurations = {
         "markrossi@work-mac" = mkHome {
           system = "aarch64-darwin";
