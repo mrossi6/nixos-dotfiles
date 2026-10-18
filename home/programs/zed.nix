@@ -18,8 +18,14 @@
       };
       vim_mode = true;
       ui_font_size = 18;
-      buffer_font_family = "CommitMono";
+      buffer_font_family = "IoskeleyMonoTerm Nerd Font Mono";
       buffer_font_size = 16;
+      lsp = {
+        gopls.binary = {
+          path = "direnv";
+          arguments = [ "exec" "." "gopls" ];
+        };
+      };
     };
     userKeymaps = [
       {
@@ -51,5 +57,4 @@
       }
     ];
   };
-
 }

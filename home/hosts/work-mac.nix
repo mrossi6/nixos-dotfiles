@@ -31,6 +31,64 @@ let
   '';
 
   combined-ca-bundle-path = "${config.home.homeDirectory}/.config/ssl/combined-ca-bundle.crt";
+
+  pstack-root = "${config.home.homeDirectory}/repos/mirrors/pstack";
+  pstack-skills-dir = "${pstack-root}/skills";
+
+  link = s: { ".pi/agent/skills/${s}".source =
+    config.lib.file.mkOutOfStoreSymlink "${pstack-skills-dir}/${s}"; };
+  # Working set of pstack skills linked into Pi. Edit this list to change it.
+  pstack-skills = [
+    "architect"
+    "arena"
+    "automate-me"
+    "blast-radius"
+    "bro"
+    "create-verification-skill"
+    "figure-it-out"
+    "how"
+    "interrogate"
+    "maintain-verification-skill"
+    "make-bot-ui"
+    "no-comments"
+    "poteto-mode"
+    "principle-attack-the-premise"
+    "principle-boundary-discipline"
+    "principle-build-the-lever"
+    "principle-encode-lessons-in-structure"
+    "principle-exhaust-the-design-space"
+    "principle-experience-first"
+    "principle-fix-root-causes"
+    "principle-foundational-thinking"
+    "principle-guard-the-context-window"
+    "principle-laziness-protocol"
+    "principle-make-operations-idempotent"
+    "principle-migrate-callers-then-delete-legacy-apis"
+    "principle-minimize-reader-load"
+    "principle-model-the-domain"
+    "principle-never-block-on-the-human"
+    "principle-outcome-oriented-execution"
+    "principle-prove-it-works"
+    "principle-redesign-from-first-principles"
+    "principle-separate-before-serializing-shared-state"
+    "principle-sequence-verifiable-units"
+    "principle-subtract-before-you-add"
+    "principle-test-behavior-not-implementation"
+    "principle-type-system-discipline"
+    "recall"
+    "reflect"
+    "setup-pstack"
+    "show-me-your-work"
+    "swarm"
+    "tdd"
+    "teach"
+    "technical-writing"
+    "typescript-best-practices"
+    "unslop"
+    "why"
+  ];
+  pstack-links = builtins.foldl' (acc: s: acc // link s) { } pstack-skills;
+
 in
 {
   imports = [
@@ -41,13 +99,17 @@ in
     ../programs/shell.nix
     ../programs/yazi.nix
     ../programs/zed.nix
-    inputs.paneru.homeModules.paneru
     inputs.pi.homeModules.default
+    { home.file = pstack-links; }
   ];
 
   programs.pi.coding-agent = {
     enable = true;
   };
+
+  # Use Zed's prebuilt macOS app; Home Manager still manages its settings,
+  # keymaps, and extensions without building the nixpkgs Zed package.
+  programs.zed-editor.package = null;
 
   programs.zsh.shellAliases = {
     hms = ''home-manager switch --flake ~/repos/mirrors/nixos-dotfiles"#${homeFlakeTarget}"'';
@@ -67,13 +129,14 @@ in
     lazygit
     nerd-fonts.commit-mono
     # ioskeley-mono-normal-Term-NF
-    ioskeley-mono.normal-term-NF
     departure-mono
     tmux
+    envchain
     ripgrep
     direnv
     zoxide
     btop
+    whisper-cpp
 
     uv
     nodejs
@@ -82,6 +145,13 @@ in
 
   home.file.".config/ghostty".source = ../../config/ghostty;
   home.file.".config/ssl/combined-ca-bundle.crt".source = combined-ca-bundle;
+
+  home.file.".pi/agent/agents/pstack-reader.md".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/agents/pstack-reader.md";
+home.file.".pi/agent/agents/pstack-investigator.md".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/agents/pstack-investigator.md";
+home.file.".pi/agent/agents/poteto-agent.md".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/agents/poteto-agent.md";
+home.file.".pi/agent/intercom/config.json".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/config/intercom.config.json";
+home.file.".agents/pstack-models.md".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/config/pstack-models.md";
+home.file.".pi/agent/subagents.json".source = config.lib.file.mkOutOfStoreSymlink "${pstack-root}/pi/config/subagents.json";
 
   home.sessionVariables = {
     NODE_EXTRA_CA_CERTS = zscaler-pem;
@@ -94,54 +164,4 @@ in
     CARGO_HTTP_CAINFO = combined-ca-bundle-path;
   };
 
-  services.paneru = {
-    enable = true;
-    settings = {
-      options = {
-        focus_follows_mouse = false;
-        mouse_follows_focus = false;
-        preset_column_widths = [
-          0.25
-          0.33
-          0.5
-          0.66
-          0.75
-          0.8
-        ];
-        border_active_window = true;
-        border_color = "#679D6B";
-        border_width = 1.0;
-
-        swipe_gesture_fingers = 4;
-
-        animation_speed = 50;
-      };
-
-      bindings = {
-        quit = "ctrl + alt - q";
-
-        window_focus_west = "cmd - h";
-        window_focus_east = "cmd - l";
-        window_focus_north = "cmd - k";
-        window_focus_south = "cmd - j";
-
-        window_swap_west = "cmd + alt - h";
-        window_swap_east = "cmd + alt - l";
-        window_swap_north = "cmd + alt - k";
-        window_swap_south = "cmd + alt - j";
-
-        window_center = "alt - c";
-        window_resize = "alt - r";
-        window_shrink = "alt + shift - r";
-
-        window_fullwidth = "alt - f";
-        window_manage = "alt - v";
-
-        window_stack = "cmd + alt - ]";
-        window_unstack = "alt + shift - ]";
-
-        window_equalize = "alt + shift - e";
-      };
-    };
-  };
 }

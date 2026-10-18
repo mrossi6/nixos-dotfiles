@@ -1,7 +1,14 @@
 { pkgs, ... }:
 
 {
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+    antialiasing = true;
+
+    hinting = "slight";
+
+    subpixelRendering = "rgb";
+  };
 
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

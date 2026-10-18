@@ -53,10 +53,6 @@
 
   time.timeZone = "America/New_York";
 
-  imports = [
-    inputs.hermes-agent.nixosModules.default
-  ];
-
   environment.systemPackages = with pkgs; [
     alsa-utils
     nqptp
@@ -135,9 +131,11 @@
     pinentryPackage = pkgs.pinentry-curses;
     enableSSHSupport = true;
   };
+
   programs.firefox.enable = true;
   programs.geary.enable = true;
   programs.niri.enable = true;
+  programs.nix-ld.enable = true;
   programs.zsh.enable = true;
 
   services.avahi.enable = true;

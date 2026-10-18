@@ -20,6 +20,8 @@
     shortcut = "Space";
     extraConfig = ''
       set-option -g status-style "bg=#414868,fg=#a9b1d6"
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
 
       bind-key -n C-h select-pane -L
       bind-key -n C-j select-pane -D
