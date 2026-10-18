@@ -171,6 +171,14 @@
           path = ./dev/templates/python;
           description = "Basic Python project template";
         };
+        rust = {
+          path = ./dev/templates/rust;
+          description = "Basic Rust project template";
+        };
+        go = {
+          path = ./dev/templates/go;
+          description = "Basic Go project template";
+        };
         default = {
           path = ./dev/templates;
           description = "Slim project template";
