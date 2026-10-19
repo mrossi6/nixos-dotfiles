@@ -42,6 +42,11 @@ output "eDP-1" {
     position x=760 y=1440
 }
 
+output "Virtual-1" {
+    mode custom=true "1728x1117@120"
+    scale 1.0
+}
+
 output "DP-1" {
     mode "3440x1440@99.982"
     position x=0 y=0
