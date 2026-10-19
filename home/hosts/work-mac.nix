@@ -103,9 +103,7 @@ in
     { home.file = pstack-links; }
   ];
 
-  programs.pi.coding-agent = {
-    enable = true;
-  };
+
 
   # Use Zed's prebuilt macOS app; Home Manager still manages its settings,
   # keymaps, and extensions without building the nixpkgs Zed package.
@@ -128,7 +126,7 @@ in
     gh-dash
     lazygit
     nerd-fonts.commit-mono
-    # ioskeley-mono-normal-Term-NF
+    ioskeley-mono.term-nf
     departure-mono
     tmux
     envchain
@@ -137,6 +135,8 @@ in
     zoxide
     btop
     whisper-cpp
+
+    inputs.pi.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     uv
     nodejs

@@ -21,9 +21,13 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # paneru = {
+    #   url = "github:karinushka/paneru";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     pi = {
-      url = "github:lukasl-dev/pi.nix";
+      url = "github:earendil-works/pi/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pixie-sddm = {
       url = "github:xCaptaiN09/pixie-sddm";
