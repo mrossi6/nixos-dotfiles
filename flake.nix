@@ -143,21 +143,18 @@
 
       nixosConfigurations.ghost = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/ghost
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.mark = mkHmUser {
-                username = "mark";
-                stateVersion = "26.05";
-                imports = [ ./home/users/mark.nix ];
-              };
+              users.mark = import ./hosts/ghost/home.nix;
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
-                nixosFlakeTarget = "ghost";
+		nixosFlakeTarget = "ghost";
               };
             };
           }
@@ -173,6 +170,7 @@
           hostModule = ./home/hosts/work-mac.nix;
           extraSpecialArgs = {
             homeFlakeTarget = "markrossi@work-mac";
+            nixOsFlakeTarget = "ghost";
           };
         };
       };
