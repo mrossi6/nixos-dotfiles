@@ -6,7 +6,7 @@
   imports = [
     ../base.nix
     ./fonts.nix
-    ./niri.nix
+    # ./niri.nix
     ./noctalia.nix
   ];
   home.pointerCursor = {
@@ -14,7 +14,7 @@
     package = pkgs.rose-pine-cursor;
     size = 31;
 
-    gtk.enable = false;
+    gtk.enable = true;
     x11.enable = true;
   };
 

@@ -2,8 +2,11 @@
   description = "marks nixos";
 
   nixConfig = {
-    extra-substituters = [ "https://noctalia.cachix.org" ];
-    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4" ];
+    extra-substituters = [ "https://noctalia.cachix.org" "https://umbriel.cachix.org" ];
+    extra-trusted-public-keys = [ 
+    "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4" 
+    "umbriel.cachix.org-1:JfNq/2yg2S6D6z4Z2dVSZrZlDPQTKtexB6GAVLD98nw="
+    ];
   };
 
   inputs = {
@@ -36,6 +39,7 @@
     pixie-sddm = {
       url = "github:xCaptaiN09/pixie-sddm";
     };
+    umbriel.url = "github:noctalia-dev/umbriel/cachix";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";

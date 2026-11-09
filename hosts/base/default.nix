@@ -98,16 +98,6 @@
     pinentry-curses
     libsecret
 
-    (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      primaryColor = "#B3C8FF";
-      accentColor = "#3F5F91";
-      autoColor = true;
-      backgroundColor = "#1A1C1E";
-      textColor = "E2E2E6";
-      fontFamily = "Commit Mono";
-      fontSize = 13;
-    })
-
     xwayland-satellite
     steam
     discord
@@ -136,6 +126,7 @@
   programs.geary.enable = true;
   programs.niri.enable = true;
   programs.nix-ld.enable = true;
+  programs.umbriel.enable = true;
   programs.zsh.enable = true;
 
   services.avahi.enable = true;
@@ -148,16 +139,16 @@
   services.upower.enable = true;
   services.xserver.enable = true;
 
-  services.displayManager.sddm = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
-    wayland.enable = true;
-    theme = "pixie";
-    package = lib.mkForce pkgs.kdePackages.sddm;
-    extraPackages = [
-      pkgs.kdePackages.qtsvg
-      pkgs.kdePackages.qtdeclarative
-      pkgs.kdePackages.qt5compat
-    ];
+    settings = {
+      cursor.size = 32;
+      keyboard.layout = "us";
+    };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
   };
 
   # Enable the OpenSSH daemon.

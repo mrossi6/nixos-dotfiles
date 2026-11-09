@@ -9,8 +9,9 @@
     ../programs/yazi.nix
     ../programs/zed.nix
     ../programs/zen-browser.nix
-    inputs.zen-browser.homeModules.default
     inputs.noctalia.homeModules.default
+    inputs.umbriel.homeModules.default
+    inputs.zen-browser.homeModules.default
   ];
 
   home.file.".config/ghostty".source = ../../config/ghostty;
